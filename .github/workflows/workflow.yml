@@ -61,7 +61,12 @@ jobs:
 
       - name: Docker build
         run: docker build -t dcesar/devopsnaloge:latest -f backend/src/main/docker/Dockerfile.jvm ./backend
-
+        
+      - name: Debug secrets
+        run: |
+          echo "USERNAME is set: ${{ secrets.DOCKER_HUB_USERNAME != '' }}"
+          echo "PASSWORD is set: ${{ secrets.DOCKER_HUB_PASS != '' }}"
+        
       - name: Login to DockerHub
         uses: docker/login-action@v3
         with:
